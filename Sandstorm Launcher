@@ -42,11 +42,18 @@ ButtonSend:
 ; Submit the GUI and hide it
 Gui, Submit, NoHide
 
-; Run the specified Steam game
-Run, steam://rungameid/581320
+; Check if the game is already open
+If (WinExist("Insurgency") = 0)
+{
+    ; Run the specified Steam game
+    Run, steam://rungameid/581320
 
-; Wait for 20 seconds
-Sleep, 20000
+    ; Wait for 20 seconds
+    Sleep, 20000
+}
+
+; Switch to the game window
+WinActivate, Insurgency
 
 ; Press the ` button
 Send, {vkC0sc029}

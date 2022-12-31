@@ -1,0 +1,245 @@
+
+; Show the GUI
+Gui, Add, DropDownList, x10 y10 w150 h400 vMap, Bab|Citadel|Crossing|Farmhouse|Gap|Hideout|Hillside|Ministry|Oilfield|Outskirts|PowerPlant|Precinct|Prison|Summit|Tell|Tideway
+Gui, Add, DropDownList, x10 y40 w150 h60 vLighting, Day|Night
+Gui, Add, DropDownList, x200 y10 w150 h60 vScenario, Checkpoint_Insurgents|Checkpoint_Security
+Gui, Add, Checkbox, x10 y70 w150 h20 vOption1, AllYouCanEat
+Gui, Add, Checkbox, x10 y100 w150 h20 vOption2, AntiMaterielRiflesOnly
+Gui, Add, Checkbox, x10 y130 w150 h20 vOption3, BoltActionsOnly
+Gui, Add, Checkbox, x10 y160 w150 h20 vOption4, Broke
+Gui, Add, Checkbox, x10 y190 w150 h20 vOption5, BudgetAntiquing
+Gui, Add, Checkbox, x10 y220 w150 h20 vOption6, BulletSponge
+Gui, Add, Checkbox, x10 y250 w150 h20 vOption7, Competitive
+Gui, Add, Checkbox, x10 y280 w150 h20 vOption8, CompetitiveLoadouts
+Gui, Add, Checkbox, x10 y310 w150 h20 vOption9, FastMovement
+Gui, Add, Checkbox, x10 y340 w150 h20 vOption10, Frenzy
+Gui, Add, Checkbox, x10 y370 w150 h20 vOption11, FullyLoaded
+Gui, Add, Checkbox, x10 y400 w150 h20 vOption12, Guerrillas
+Gui, Add, Checkbox, x10 y430 w150 h20 vOption13, Gunslingers
+Gui, Add, Checkbox, x10 y460 w150 h20 vOption14, Hardcore
+Gui, Add, Checkbox, x200 y70 w150 h20 vOption15, HeadshotOnly
+Gui, Add, Checkbox, x200 y100 w150 h20 vOption16, HotPotato
+Gui, Add, Checkbox, x200 y130 w150 h20 vOption17, LockedAim
+Gui, Add, Checkbox, x200 y160 w150 h20 vOption18, MakarovsOnly
+Gui, Add, Checkbox, x200 y190 w150 h20 vOption19, NoAim
+Gui, Add, Checkbox, x200 y220 w150 h20 vOption20, NoDrops
+Gui, Add, Checkbox, x200 y250 w150 h20 vOption21, PistolsOnly
+Gui, Add, Checkbox, x200 y280 w150 h20 vOption22, Poor
+Gui, Add, Checkbox, x200 y310 w150 h20 vOption23, ShotgunsOnly
+Gui, Add, Checkbox, x200 y340 w150 h20 vOption24, SlowCaptureTimes
+Gui, Add, Checkbox, x200 y370 w150 h20 vOption25, SlowMovement
+Gui, Add, Checkbox, x200 y400 w150 h20 vOption26, SoldierOfFortune
+Gui, Add, Checkbox, x200 y430 w150 h20 vOption27, SpecialOperations
+Gui, Add, Checkbox, x200 y460 w150 h20 vOption28, Strapped
+Gui, Add, Checkbox, x200 y490 w150 h20 vOption29, Ultralethal
+Gui, Add, Checkbox, x200 y520 w150 h20 vOption30, Vampirism
+Gui, Add, Checkbox, x200 y550 w150 h20 vOption31, Warlords
+Gui, Add, Button, x10 y490 w150 h100, Send
+Gui, Show
+return
+
+ButtonSend:
+; Submit the GUI and hide it
+Gui, Submit, NoHide
+
+; Run the specified Steam game
+Run, steam://rungameid/581320
+
+; Wait for 20 seconds
+Sleep, 20000
+
+; Press the ` button
+Send, {vkC0sc029}
+
+; Wait for 1 second
+Sleep, 1000
+
+; Build the command string
+Command = Open{space}
+
+; Check the selected map
+If (Map = "Oilfield")
+{
+    Command .= "Oilfield?Scenario=Scenario_Refinery"
+}
+Else If (Map = "Summit")
+{
+    Command .= "Mountain?Scenario=Scenario_Summit"
+}
+Else If (Map = "Outskirts")
+{
+    Command .= "Compound?Scenario=Scenario_Outskirts"
+}
+Else If (Map = "Hillside")
+{
+    Command .= "Sinjar?Scenario=Scenario_Hillside"
+}
+Else If (Map = "Crossing")
+{
+    Command .= "Canyon?Scenario=Scenario_Crossing"
+}
+Else If (Map = "Tideway")
+{
+    Command .= "Buhriz?Scenario=Scenario_Tideway"
+}
+Else
+{
+    Command .= Map . "?Scenario=Scenario_" . Map
+}
+; Check the scenario and lighting options
+If (Scenario = "Checkpoint_Insurgents")
+{
+    Command .= "_Checkpoint_Insurgents"
+}
+Else If (Scenario = "Checkpoint_Security")
+{
+    Command .= "_Checkpoint_Security"
+}
+
+; Add the lighting option
+Command .= "?Lighting=" . Lighting
+
+; Add the mutators
+MutatorString = 
+If (Option1)
+{
+    MutatorString .= "AllYouCanEat,"
+}
+If (Option2)
+{
+    MutatorString .= "AntiMaterielRiflesOnly,"
+}
+If (Option3)
+{
+    MutatorString .= "BoltActionsOnly,"
+}
+If (Option4)
+{
+    MutatorString .= "Broke,"
+}
+If (Option5)
+{
+    MutatorString .= "BudgetAntiquing,"
+}
+If (Option6)
+{
+    MutatorString .= "BulletSponge,"
+}
+If (Option7)
+{
+    MutatorString .= "Competitive,"
+}
+If (Option8)
+{
+    MutatorString .= "CompetitiveLoadouts,"
+}
+If (Option9)
+{
+    MutatorString .= "FastMovement,"
+}
+If (Option10)
+{
+    MutatorString .= "Frenzy,"
+}
+If (Option11)
+{
+    MutatorString .= "FullyLoaded,"
+}
+If (Option12)
+{
+    MutatorString .= "Guerrillas,"
+}
+If (Option13)
+{
+    MutatorString .= "Gunslingers,"
+}
+If (Option14)
+{
+    MutatorString .= "Hardcore,"
+}
+If (Option15)
+{
+    MutatorString .= "HeadshotOnly,"
+}
+If (Option16)
+{
+    MutatorString .= "HotPotato,"
+}
+If (Option17)
+{
+    MutatorString .= "LockedAim,"
+}
+If (Option18)
+{
+    MutatorString .= "MakarovsOnly,"
+}
+If (Option19)
+{
+    MutatorString .= "NoAim,"
+}
+If (Option20)
+{
+    MutatorString .= "NoDrops,"
+}
+If (Option21)
+{
+    MutatorString .= "PistolsOnly,"
+}
+If (Option22)
+{
+    MutatorString .= "Poor,"
+}
+If (Option23)
+{
+    MutatorString .= "ShotgunsOnly,"
+}
+If (Option24)
+{
+    MutatorString .= "SlowCaptureTimes,"
+}
+If (Option25)
+{
+    MutatorString .= "SlowMovement,"
+}
+If (Option26)
+{
+    MutatorString .= "SoldierOfFortune,"
+}
+If (Option27)
+{
+    MutatorString .= "SpecialOperations,"
+}
+If (Option28)
+{
+    MutatorString .= "Strapped,"
+}
+If (Option29)
+{
+    MutatorString .= "Ultralethal,"
+}
+If (Option30)
+{
+    MutatorString .= "Vampirism,"
+}
+If (Option31)
+{
+    MutatorString .= "Warlords,"
+}
+
+; Add the mutator string to the command, if it is not empty
+If (MutatorString != "")
+{
+    Command .= "?Mutators=" . SubStr(MutatorString, 1, StrLen(MutatorString) - 1)
+}
+
+; Type out the command
+Send, %Command%
+
+; Wait for 1 second
+Sleep, 1000
+
+; Press the Enter key
+Send, {Enter}
+
+; End the script
+return

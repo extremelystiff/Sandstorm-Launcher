@@ -2,7 +2,7 @@
 ; Show the GUI
 Gui, Add, DropDownList, x10 y10 w150 h400 vMap, Bab|Citadel|Crossing|Farmhouse|Gap|Hideout|Hillside|Ministry|Oilfield|Outskirts|PowerPlant|Precinct|Prison|Summit|Tell|Tideway
 Gui, Add, DropDownList, x10 y40 w150 h60 vLighting, Day|Night
-Gui, Add, DropDownList, x200 y10 w150 h60 vScenario, Checkpoint_Insurgents|Checkpoint_Security
+Gui, Add, DropDownList, x200 y10 w150 h120 vScenario, Checkpoint_Insurgents|Checkpoint_Security|Outpost|Survival
 Gui, Add, Checkbox, x10 y70 w150 h20 vOption1, AllYouCanEat
 Gui, Add, Checkbox, x10 y100 w150 h20 vOption2, AntiMaterielRiflesOnly
 Gui, Add, Checkbox, x10 y130 w150 h20 vOption3, BoltActionsOnly
@@ -16,7 +16,7 @@ Gui, Add, Checkbox, x10 y340 w150 h20 vOption10, Frenzy
 Gui, Add, Checkbox, x10 y370 w150 h20 vOption11, FullyLoaded
 Gui, Add, Checkbox, x10 y400 w150 h20 vOption12, Guerrillas
 Gui, Add, Checkbox, x10 y430 w150 h20 vOption13, Gunslingers
-Gui, Add, Checkbox, x10 y460 w150 h20 vOption14, Hardcore
+Gui, Add, Checkbox, x200 y40 w150 h20 vOption14, Hardcore
 Gui, Add, Checkbox, x200 y70 w150 h20 vOption15, HeadshotOnly
 Gui, Add, Checkbox, x200 y100 w150 h20 vOption16, HotPotato
 Gui, Add, Checkbox, x200 y130 w150 h20 vOption17, LockedAim
@@ -33,7 +33,7 @@ Gui, Add, Checkbox, x200 y430 w150 h20 vOption27, SpecialOperations
 Gui, Add, Checkbox, x200 y460 w150 h20 vOption28, Strapped
 Gui, Add, Checkbox, x200 y490 w150 h20 vOption29, Ultralethal
 Gui, Add, Checkbox, x200 y520 w150 h20 vOption30, Vampirism
-Gui, Add, Checkbox, x200 y550 w150 h20 vOption31, Warlords
+Gui, Add, Checkbox, x10 y460 w150 h20 vOption31, Warlords
 Gui, Add, Button, x10 y490 w150 h100, Send
 Gui, Show
 return
@@ -102,7 +102,14 @@ Else If (Scenario = "Checkpoint_Security")
 {
     Command .= "_Checkpoint_Security"
 }
-
+Else If (Scenario = "Outpost")
+{
+    Command .= "_Outpost"
+}
+Else If (Scenario = "Survival")
+{
+    Command .= "_Survival"
+}
 ; Add the lighting option
 Command .= "?Lighting=" . Lighting
 

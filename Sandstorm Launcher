@@ -1,6 +1,6 @@
 
 ; Show the GUI
-Gui, Add, DropDownList, x10 y10 w150 h400 vMap, Bab|Citadel|Crossing|Farmhouse|Gap|Hideout|Hillside|Ministry|Oilfield|Outskirts|PowerPlant|Precinct|Prison|Summit|Tell|Tideway
+Gui, Add, DropDownList, x10 y10 w150 h400 vMap, Bab|Citadel|Crossing|Farmhouse|Gap|Hideout|Hillside|LastLight|Ministry|Oilfield|Outskirts|PowerPlant|Precinct|Prison|Summit|Tell|Tideway
 Gui, Add, DropDownList, x10 y40 w150 h60 vLighting, Day|Night
 Gui, Add, DropDownList, x200 y10 w150 h120 vScenario, Checkpoint_Insurgents|Checkpoint_Security|Outpost|Survival
 Gui, Add, Checkbox, x10 y70 w150 h20 vOption1, AllYouCanEat

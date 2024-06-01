@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insurgency: Sandstorm Map and Scenario Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        select, input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+        
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Insurgency: Sandstorm Map and Scenario Selector</h1>
+    
+    <label for="map">Map:</label>
+    <select id="map">
+        <option value="Bab">Bab</option>
+        <option value="Citadel">Citadel</option>
+        <option value="Crossing">Crossing</option>
+        <option value="Farmhouse">Farmhouse</option>
+        <option value="Gap">Gap</option>
+        <option value="Hideout">Hideout</option>
+        <option value="Hillside">Hillside</option>
+        <option value="LastLight">LastLight</option>
+        <option value="Ministry">Ministry</option>
+        <option value="Oilfield">Oilfield</option>
+        <option value="Outskirts">Outskirts</option>
+        <option value="PowerPlant">PowerPlant</option>
+        <option value="Precinct">Precinct</option>
+        <option value="Prison">Prison</option>
+        <option value="Summit">Summit</option>
+        <option value="Tell">Tell</option>
+        <option value="Tideway">Tideway</option>
+    </select>
+    
+    <br>
+    
+    <label for="lighting">Lighting:</label>
+    <select id="lighting">
+        <option value="Day">Day</option>
+        <option value="Night">Night</option>
+    </select>
+    
+    <br>
+    
+    <label for="scenario">Scenario:</label>
+    <select id="scenario">
+        <option value="Checkpoint_Insurgents">Checkpoint_Insurgents</option>
+        <option value="Checkpoint_Security">Checkpoint_Security</option>
+        <option value="Outpost">Outpost</option>
+        <option value="Survival">Survival</option>
+    </select>
+    
+    <br>
+    
+    <label>Mutators:</label><br>
+    <input type="checkbox" id="option1" value="AllYouCanEat"> AllYouCanEat<br>
+    <input type="checkbox" id="option2" value="AntiMaterielRiflesOnly"> AntiMaterielRiflesOnly<br>
+    <input type="checkbox" id="option3" value="BoltActionsOnly"> BoltActionsOnly<br>
+    <input type="checkbox" id="option4" value="Broke"> Broke<br>
+    <input type="checkbox" id="option5" value="BudgetAntiquing"> BudgetAntiquing<br>
+    <input type="checkbox" id="option6" value="BulletSponge"> BulletSponge<br>
+    <input type="checkbox" id="option7" value="Competitive"> Competitive<br>
+    <input type="checkbox" id="option8" value="CompetitiveLoadouts"> CompetitiveLoadouts<br>
+    <input type="checkbox" id="option9" value="FastMovement"> FastMovement<br>
+    <input type="checkbox" id="option10" value="Frenzy"> Frenzy<br>
+    <input type="checkbox" id="option11" value="FullyLoaded"> FullyLoaded<br>
+    <input type="checkbox" id="option12" value="Guerrillas"> Guerrillas<br>
+    <input type="checkbox" id="option13" value="Gunslingers"> Gunslingers<br>
+    <input type="checkbox" id="option14" value="Hardcore"> Hardcore<br>
+    <input type="checkbox" id="option15" value="HeadshotOnly"> HeadshotOnly<br>
+    <input type="checkbox" id="option16" value="HotPotato"> HotPotato<br>
+    <input type="checkbox" id="option17" value="LockedAim"> LockedAim<br>
+    <input type="checkbox" id="option18" value="MakarovsOnly"> MakarovsOnly<br>
+    <input type="checkbox" id="option19" value="NoAim"> NoAim<br>
+    <input type="checkbox" id="option20" value="NoDrops"> NoDrops<br>
+    <input type="checkbox" id="option21" value="PistolsOnly"> PistolsOnly<br>
+    <input type="checkbox" id="option22" value="Poor"> Poor<br>
+    <input type="checkbox" id="option23" value="ShotgunsOnly"> ShotgunsOnly<br>
+    <input type="checkbox" id="option24" value="SlowCaptureTimes"> SlowCaptureTimes<br>
+    <input type="checkbox" id="option25" value="SlowMovement"> SlowMovement<br>
+    <input type="checkbox" id="option26" value="SoldierOfFortune"> SoldierOfFortune<br>
+    <input type="checkbox" id="option27" value="SpecialOperations"> SpecialOperations<br>
+    <input type="checkbox" id="option28" value="Strapped"> Strapped<br>
+    <input type="checkbox" id="option29" value="Ultralethal"> Ultralethal<br>
+    <input type="checkbox" id="option30" value="Vampirism"> Vampirism<br>
+    <input type="checkbox" id="option31" value="Warlords"> Warlords<br>
+    
+    <button onclick="generateCommand()">Generate Command</button>
+    
+    <br>
+    
+    <label for="command">Generated Command:</label><br>
+    <textarea id="command" rows="4" cols="50" readonly></textarea>
+    
+    <br>
+    
+    <button onclick="copyCommand()">Copy Command</button>
+    
+    <script>
+        function generateCommand() {
+            var map = document.getElementById("map").value;
+            var lighting = document.getElementById("lighting").value;
+            var scenario = document.getElementById("scenario").value;
+            
+            var command = "Open ";
+            
+            if (map === "Oilfield") {
+                command += "Oilfield?Scenario=Scenario_Refinery";
+            } else if (map === "Summit") {
+                command += "Mountain?Scenario=Scenario_Summit";
+            } else if (map === "Outskirts") {
+                command += "Compound?Scenario=Scenario_Outskirts";
+            } else if (map === "Hillside") {
+                command += "Sinjar?Scenario=Scenario_Hillside";
+            } else if (map === "Crossing") {
+                command += "Canyon?Scenario=Scenario_Crossing";
+            } else if (map === "Tideway") {
+                command += "Buhriz?Scenario=Scenario_Tideway";
+            } else {
+                command += map + "?Scenario=Scenario_" + map;
+            }
+            
+            if (scenario === "Checkpoint_Insurgents") {
+                command += "_Checkpoint_Insurgents";
+            } else if (scenario === "Checkpoint_Security") {
+                command += "_Checkpoint_Security";
+            } else if (scenario === "Outpost") {
+                command += "_Outpost";
+            } else if (scenario === "Survival") {
+                command += "_Survival";
+            }
+            
+            command += "?Lighting=" + lighting;
+            
+            var mutators = [];
+            
+            for (var i = 1; i <= 31; i++) {
+                var checkbox = document.getElementById("option" + i);
+                if (checkbox.checked) {
+                    mutators.push(checkbox.value);
+                }
+            }
+            
+            if (mutators.length > 0) {
+                command += "?Mutators=" + mutators.join(",");
+            }
+            
+            document.getElementById("command").value = command;
+        }
+        
+        function copyCommand() {
+            var command = document.getElementById("command");
+            command.select();
+            document.execCommand("copy");
+            alert("Command copied to clipboard!");
+        }
+    </script>
+</body>
+</html>
